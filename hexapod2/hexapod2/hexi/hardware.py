@@ -3,9 +3,6 @@ import math
 
 class Leg:
     def __init__(self):
-        self.coxa_height = 0.03
-        self.femur_length = 0.053
-        self.tibia_length = 0.088
 
         self.coxa_angle = 0
         self.femur_angle = 0

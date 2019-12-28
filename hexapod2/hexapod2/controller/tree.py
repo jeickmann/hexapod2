@@ -5,16 +5,21 @@ from rclpy.node import Node
 
 from .wakeup import InitSleepPos
 from .weightlifting import WeightLifting
+from .tools import ReadLegPos
 
 class ControllerNode(Node):
     def __init__(self):
         super().__init__('hexapod_controller')
 
-        self.tree = py_trees.composites.Sequence()
+        tasks = py_trees.composites.Sequence()
 
-        self.tree.add_child(py_trees.decorators.OneShot(InitSleepPos(self)))
-        self.tree.add_child(WeightLifting(self))
+        tasks.add_child(py_trees.decorators.OneShot(InitSleepPos(self)))
+        tasks.add_child(WeightLifting(self))
 
+        self.tree = py_trees.composites.Parallel()
+        self.tree.add_child(ReadLegPos(self))
+        self.tree.add_child(tasks)
+        print(py_trees.display.ascii_tree(self.tree))
         self.tree.setup_with_descendants()
         
         self.timer = self.create_timer(0.01, self.tree.tick_once)

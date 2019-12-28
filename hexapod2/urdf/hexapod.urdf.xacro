@@ -106,6 +106,22 @@
 			
 			<xacro:cube_inertial origin_xyz="0 ${reflect*lower_leg_length/2} 0" mass="0.015" width="0.004" height="${lower_leg_length}" depth="0.01"/>
 		</link>
+
+		<link name="${name}_foot">
+			<collision>
+				<geometry>
+					<box size="0.005 0.005 0.005" />
+				</geometry>
+				<origin xyz="0 0 0" />
+			</collision>
+			<visual>
+				<geometry>
+					<box size="0.005 0.005 0.005" />
+				</geometry>
+				<material name="green"/>
+				<origin xyz="0 0 0" />
+			</visual>
+		</link>
 		
 		<gazebo reference="${name}_tibia">
 			<material>Gazebo/Black</material>
@@ -174,6 +190,12 @@
 		      <hardwareInterface>PositionJointInterface</hardwareInterface>
 		    </actuator>
 		</transmission>
+
+		<joint name="${name}_tibia_to_foot" type="fixed">
+			<parent link="${name}_tibia" />
+			<child link="${name}_foot" />
+			<origin xyz="0.000 ${reflect*lower_leg_length} 0" />
+		</joint>
 	</xacro:macro>
 
 	<link name="base_link">

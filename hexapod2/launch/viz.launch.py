@@ -16,10 +16,6 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='rviz2', node_executable='rviz2',
             node_name='rviz2'),
-            
-        launch_ros.actions.Node(
-            package='robot_state_publisher', node_executable='robot_state_publisher', output='screen',
-            node_name='robot_state_publisher', arguments=[urdfFile]),
 
         #launch_ros.actions.Node(
         #    package='joint_state_publisher', node_executable='joint_state_publisher', output='screen',

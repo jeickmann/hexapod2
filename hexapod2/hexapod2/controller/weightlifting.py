@@ -25,7 +25,6 @@ class WeightLifting(InitSleepPos):
         self.bottomHeight = -0.06
         self.interval = rclpy.duration.Duration(seconds=1)
         self.movingUp = True
-        
 
     def initialise(self):
         self.movementStart = self.node.get_clock().now()
@@ -39,7 +38,7 @@ class WeightLifting(InitSleepPos):
         else:
             currentHeight = self.topHeight - diff 
 
-        print(currentHeight)
+        #print(currentHeight)
         
         if(duration > self.interval):
             self.movementStart = self.node.get_clock().now()

@@ -6,7 +6,8 @@ from std_msgs.msg import Float64, Header
 from geometry_msgs.msg import Point
 from sensor_msgs.msg import JointState
 
-from serial import Serial
+from serial import Serial, serialutil
+
 
 from hexapod2.hexi import hardware, kinematics
 
@@ -73,7 +74,10 @@ class HardwareNode(Node):
         if(comPort == None):
             serial = MockSerial()
         else:
-            serial = Serial(comPort, 115200, timeout=0)
+            try:
+                serial = Serial(comPort, 115200, timeout=0)
+            except serialutil.SerialException as e:
+                serial = MockSerial()
         
         self.hardware = hardware.Hardware(serial)
 
