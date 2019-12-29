@@ -12,7 +12,7 @@ class WeightLifting(InitSleepPos):
         for i in range(6):
             point = Point()
             point.x = 0.0
-            point.y = 0.08
+            point.y = 0.06
             point.z = -0.01
             self.sleepPos.append(point)
         
