@@ -77,6 +77,7 @@ class HardwareNode(Node):
             try:
                 serial = Serial(comPort, 115200, timeout=0)
             except serialutil.SerialException as e:
+                print("Serial not found. Continuing without hardware. Error waS: " + str(e))
                 serial = MockSerial()
         
         self.hardware = hardware.Hardware(serial)

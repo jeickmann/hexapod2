@@ -36,5 +36,5 @@ hexapod_hardware:
     rr_femur_dir: -1
     rr_femur_offset: 0.3
     rr_tibia_dir: 1
-    rr_tibia_offset: 1.6
+    rr_tibia_offset: 1.4
     use_sim_time: false
